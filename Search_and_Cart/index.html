@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon.in - Online Shopping site in India</title>
+  <meta name="description" content="Amazon India clone - Module 2 Search, Product Catalog, Filters & Shopping Cart Engine.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Amazon Signature Header -->
+  <header class="amazon-header">
+    <div class="header-main">
+      
+      <!-- Authentic Amazon Logo with Crisp Orange Smile Arrow -->
+      <a href="#" class="brand-logo" onclick="setActiveCategory('All'); return false;">
+        <div class="logo-text-box">
+          <span class="logo-amazon-text">amazon</span>
+          <span class="logo-in-text">.in</span>
+        </div>
+        <svg class="smile-arrow-svg" viewBox="0 0 100 20">
+          <path d="M 4 3 Q 48 18 84 3" fill="none" stroke="#FF9900" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M 76 1 L 87 3 L 79 10 Z" fill="#FF9900"/>
+        </svg>
+      </a>
+
+      <!-- Deliver to Location Vector Pin -->
+      <div class="nav-location">
+        <svg class="location-pin-svg" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <div class="location-text">
+          <span class="location-line1">Deliver to</span>
+          <span class="location-line2">India 400001</span>
+        </div>
+      </div>
+
+      <!-- Main Search Bar -->
+      <div class="header-search">
+        <select id="searchCategorySelect" class="search-category-select" aria-label="Select Category">
+          <option value="All">All Categories</option>
+          <option value="Electronics">Mobiles & Electronics</option>
+          <option value="Fashion">Fashion & Apparel</option>
+          <option value="Home & Kitchen">Home & Kitchen</option>
+          <option value="Books">Books</option>
+          <option value="Gaming">Gaming</option>
+        </select>
+        <div class="search-input-wrapper">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search Amazon.in" aria-label="Search Amazon.in">
+        </div>
+        <button id="searchSubmitBtn" class="search-submit-btn" aria-label="Search Submit">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Actions Right -->
+      <div class="header-actions">
+        <!-- Language Selector -->
+        <div class="nav-item">
+          <span class="nav-line1"><span class="flag-icon">🇮🇳</span> EN</span>
+          <span class="nav-line2">▾</span>
+        </div>
+
+        <!-- User Session (Module 1 Integration) -->
+        <div class="nav-item" id="navUserAccountBtn">
+          <span class="nav-line1" id="userNavLine1">Hello, Sign in</span>
+          <span class="nav-line2">Account & Lists ▾</span>
+        </div>
+
+        <!-- Orders -->
+        <div class="nav-item">
+          <span class="nav-line1">Returns</span>
+          <span class="nav-line2">& Orders</span>
+        </div>
+
+        <!-- Authentic Amazon Cart Button -->
+        <div class="nav-item cart-nav-btn" onclick="openCartDrawer()">
+          <div class="cart-icon-wrapper">
+            <svg class="amazon-cart-svg" viewBox="0 0 38 28">
+              <path d="M7 1h-6v2h4l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h22v-2h-21.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h14.55c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1h-24.69l-.94-2zm3 17c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm16 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+            <span id="navCartCount" class="cart-count">0</span>
+          </div>
+          <span class="cart-text-label">Cart</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Subnav Strip -->
+    <nav class="header-subnav" id="subnavContainer">
+      <a href="#" class="subnav-link bold active" data-category="All">☰ All</a>
+      <a href="#" class="subnav-link" data-category="Electronics">Mobiles & Electronics</a>
+      <a href="#" class="subnav-link" data-category="Fashion">Fashion & Apparel</a>
+      <a href="#" class="subnav-link" data-category="Home & Kitchen">Home & Kitchen</a>
+      <a href="#" class="subnav-link" data-category="Books">Books</a>
+      <a href="#" class="subnav-link" data-category="Gaming">Gaming Consoles</a>
+      <a href="#" class="subnav-link" data-category="Deals" style="color: var(--amazon-yellow); font-weight:700;">Today's Deals</a>
+      <a href="#" class="subnav-link" data-category="Prime">Prime</a>
+      <a href="#" class="subnav-link" data-category="Amazon Pay">Amazon Pay</a>
+      <a href="#" class="subnav-link" data-category="Customer Service">Customer Service</a>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="amazon-container">
+    
+    <!-- Active View Header Banner -->
+    <div id="categoryHeaderBanner" class="category-header-banner">
+      <div>
+        <h2 id="categoryHeaderTitle" class="category-header-title">All Products</h2>
+        <div class="category-breadcrumbs"><a href="#" onclick="setActiveCategory('All'); return false;">Home</a> / <span id="categoryBreadcrumbName">All Categories</span></div>
+      </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <section id="heroBannerSection" class="hero-banner">
+      <div class="hero-content">
+        <h1>Great Indian Summer Festival Sale 🛒</h1>
+        <p>Up to 70% Off on Top Electronics, Smartphones, Home Appliances & Fashion</p>
+        <button class="hero-cta" onclick="document.getElementById('searchInput').focus();">Explore 200+ Deals Now</button>
+      </div>
+    </section>
+
+    <!-- Main Layout: Filters + Products Grid -->
+    <div class="main-layout">
+      
+      <!-- Sidebar Filters -->
+      <aside class="sidebar-filters">
+        <div class="filter-section">
+          <h3 class="filter-title">Category</h3>
+          <ul class="filter-list">
+            <li class="filter-item">
+              <label><input type="radio" name="categoryFilter" value="All" checked onclick="setActiveCategory('All')"> All Categories (200)</label>
+            </li>
+            <li class="filter-item">
+              <label><input type="radio" name="categoryFilter" value="Electronics" onclick="setActiveCategory('Electronics')"> Electronics & Mobiles</label>
+            </li>
+            <li class="filter-item">
+              <label><input type="radio" name="categoryFilter" value="Fashion" onclick="setActiveCategory('Fashion')"> Fashion & Apparel</label>
+            </li>
+            <li class="filter-item">
+              <label><input type="radio" name="categoryFilter" value="Home & Kitchen" onclick="setActiveCategory('Home & Kitchen')"> Home & Kitchen</label>
+            </li>
+            <li class="filter-item">
+              <label><input type="radio" name="categoryFilter" value="Books" onclick="setActiveCategory('Books')"> Books</label>
+            </li>
+            <li class="filter-item">
+              <label><input type="radio" name="categoryFilter" value="Gaming" onclick="setActiveCategory('Gaming')"> Gaming</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-section">
+          <h3 class="filter-title">Price Filter (₹)</h3>
+          <div class="price-inputs">
+            <input type="number" id="priceMinInput" placeholder="Min ₹" min="0">
+            <span>to</span>
+            <input type="number" id="priceMaxInput" placeholder="Max ₹" min="0">
+            <button id="priceGoBtn" class="price-go-btn">Go</button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h3 class="filter-title">Customer Review</h3>
+          <ul class="filter-list">
+            <li class="filter-item">
+              <label><input type="radio" name="ratingFilter" onclick="minRatingFilter=4.5; renderProducts();"> ★★★★☆ & Up (4.5+)</label>
+            </li>
+            <li class="filter-item">
+              <label><input type="radio" name="ratingFilter" onclick="minRatingFilter=4.0; renderProducts();"> ★★★★☆ & Up (4.0+)</label>
+            </li>
+            <li class="filter-item">
+              <label><input type="radio" name="ratingFilter" checked onclick="minRatingFilter=0; renderProducts();"> All Ratings</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-section">
+          <h3 class="filter-title">Amazon Prime</h3>
+          <label style="font-size:13px; cursor:pointer;"><input type="checkbox" id="primeOnlyToggle" onchange="renderProducts()" style="accent-color: #00a8e1;"> Eligible for FREE Prime Delivery</label>
+        </div>
+      </aside>
+
+      <!-- Products Grid & Views Area -->
+      <section>
+        <!-- Toolbar -->
+        <div class="results-toolbar">
+          <div id="resultsCountLabel" class="results-count">Showing results</div>
+          <div class="sort-container">
+            <label for="sortSelect">Sort by:</label>
+            <select id="sortSelect" class="sort-select">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Avg. Customer Review</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Product Grid / Special View Container -->
+        <div id="productGridContainer" class="product-grid">
+          <!-- Rendered by app.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Quick View Product Detail Modal -->
+  <div id="productModalOverlay" class="modal-overlay" onclick="if(event.target===this) closeModal();">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      <div id="modalContentBody" style="display: contents;">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Shopping Cart Drawer -->
+  <div id="cartDrawerOverlay" class="cart-drawer-overlay" onclick="closeCartDrawer()"></div>
+  <aside id="cartDrawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">Shopping Cart</span>
+      <button class="close-drawer-btn" onclick="closeCartDrawer()">✕</button>
+    </div>
+    
+    <div class="cart-shipping-banner">
+      <div id="shippingBannerText">Add eligible items to get FREE Delivery.</div>
+      <div class="progress-bar-container">
+        <div id="shippingProgressBar" class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <div id="cartDrawerItemsList" class="cart-items-list">
+      <!-- Cart items injected by app.js -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="subtotal-row">
+        <span>Subtotal:</span>
+        <span id="drawerSubtotal">₹0</span>
+      </div>
+      <a href="#" class="btn-proceed-checkout" onclick="proceedToCheckoutModule3(); return false;">Proceed to Checkout (Module 3) →</a>
+    </div>
+  </aside>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Amazon Footer -->
+  <footer class="amazon-footer">
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Back to top</div>
+    <div class="footer-links-grid">
+      <div class="footer-column">
+        <h3>Get to Know Us</h3>
+        <ul>
+          <li><a href="#">About Amazon</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press Releases</a></li>
+          <li><a href="#">Amazon Science</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Make Money with Us</h3>
+        <ul>
+          <li><a href="#">Sell on Amazon</a></li>
+          <li><a href="#">Protect and Build Your Brand</a></li>
+          <li><a href="#">Amazon Global Selling</a></li>
+          <li><a href="#">Become an Affiliate</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Let Us Help You</h3>
+        <ul>
+          <li><a href="#">COVID-19 and Amazon</a></li>
+          <li><a href="#">Your Account</a></li>
+          <li><a href="#">Returns Centre</a></li>
+          <li><a href="#">100% Purchase Protection</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026, Amazon.in - Module 2 (Search, Catalog & Shopping Cart Engine)</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

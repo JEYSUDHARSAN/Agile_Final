@@ -1,0 +1,83 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: "Amazon Ember", Arial, sans-serif;
+    background-color: #fff;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+.logo-container { margin: 14px 0 18px; text-align: center; }
+.logo-container img { width: 103px; object-fit: contain; }
+.auth-container { width: 100%; max-width: 350px; margin: 0 auto; }
+.auth-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px 26px;
+    background-color: #fff;
+    margin-bottom: 22px;
+}
+.auth-card h1 { font-weight: 400; font-size: 28px; margin-bottom: 14px; line-height: 1.2; }
+.form-group { margin-bottom: 14px; }
+.form-group label {
+    display: block; font-size: 13px; font-weight: 700; margin-bottom: 2px; padding-left: 2px;
+}
+.form-group input {
+    width: 100%; padding: 3px 7px; height: 31px;
+    border: 1px solid #a6a6a6; border-top-color: #949494;
+    border-radius: 3px; box-shadow: 0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset;
+    font-size: 13px; outline: none;
+}
+.form-group input:focus { border-color: #e77600; box-shadow: 0 0 3px 2px rgba(228,121,17,.5); }
+.btn {
+    width: 100%; padding: 0; text-align: center; border-radius: 3px;
+    font-size: 13px; cursor: pointer; height: 29px; outline: none;
+}
+.btn-primary {
+    background: linear-gradient(to bottom,#f7dfa5,#f0c14b);
+    border: 1px solid; border-color: #a88734 #9c7e31 #846a29; color: #111;
+}
+.btn-primary:hover { background: linear-gradient(to bottom,#f5d78e,#eeb933); }
+.legal-text { font-size: 12px; margin-top: 18px; line-height: 1.5; }
+.legal-text a { color: #0066c0; text-decoration: none; }
+.legal-text a:hover { text-decoration: underline; color: #c45500; }
+.divider { position: relative; text-align: center; margin-top: 22px; margin-bottom: 14px; }
+.divider::before {
+    content: ""; position: absolute; top: 50%; left: 0; right: 0;
+    height: 1px; background-color: #e7e7e7; z-index: 1;
+}
+.divider span {
+    position: relative; background-color: #fff; padding: 0 8px;
+    color: #767676; font-size: 12px; z-index: 2;
+}
+.btn-secondary {
+    background: linear-gradient(to bottom,#f6f7f9,#e7e9ec);
+    border: 1px solid; border-color: #adb1b8 #a2a6ac #8d9096;
+    color: #111; height: 31px; display: flex; align-items: center;
+    justify-content: center; text-decoration: none; width: 100%;
+    border-radius: 3px; font-size: 13px; cursor: pointer;
+}
+.btn-secondary:hover { background: linear-gradient(to bottom,#f3f4f6,#d5d8dc); }
+.view-container { display: none; }
+.view-container.active { display: block; flex: 1; width: 100%; }
+.error-box {
+    display: none; border: 1px solid #cc0000; border-radius: 4px;
+    padding: 14px 18px; margin-bottom: 14px;
+    box-shadow: 0 0 0 4px #fae1e1 inset; align-items: flex-start;
+}
+.error-box.active { display: flex; }
+.error-box-icon { color: #cc0000; font-size: 24px; margin-right: 10px; font-weight: bold; line-height: 1;}
+.error-box-content h4 { color: #cc0000; font-size: 14px; margin-bottom: 4px; font-weight: 400; }
+.error-box-content p { font-size: 13px; }
+#dashboard-view { max-width: 800px; width: 100%; padding: 20px; margin: 0 auto; flex: 1; }
+.dashboard-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+.dashboard-header .logo-container { margin: 0; }
+.dashboard-header img { width: 80px; }
+.dashboard-content h1 { font-size: 24px; font-weight: 400; margin-bottom: 15px; }
+.dashboard-content p { font-size: 14px; margin-bottom: 15px; }
+.footer { border-top: 1px solid #ddd; width: 100%; padding: 30px 0; background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent); margin-top: auto;}
+.footer-links { text-align: center; margin-bottom: 10px; }
+.footer-links a { color: #0066c0; text-decoration: none; font-size: 11px; margin: 0 10px; }
+.footer-links a:hover { text-decoration: underline; }
+.footer-copy { text-align: center; font-size: 11px; color: #555; }
