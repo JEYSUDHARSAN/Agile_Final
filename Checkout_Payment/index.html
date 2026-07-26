@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon.in Checkout</title>
+  <meta name="description" content="Amazon India clone - Module 3 Checkout and Payment.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="checkout-header">
+    <a href="../Search_and_Cart/index.html" class="brand-logo" aria-label="Amazon.in home">
+      <span class="logo-word">amazon</span><span class="logo-in">.in</span>
+      <svg class="smile-arrow" viewBox="0 0 100 20" aria-hidden="true">
+        <path d="M 4 3 Q 48 18 84 3" fill="none" stroke="#FF9900" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M 76 1 L 87 3 L 79 10 Z" fill="#FF9900"/>
+      </svg>
+    </a>
+    <h1>Checkout</h1>
+    <div class="secure-badge" aria-label="Secure checkout">
+      <span class="lock-icon">Lock</span>
+      <span>100% secure</span>
+    </div>
+  </header>
+
+  <main class="checkout-shell">
+    <section id="gateMessage" class="gate-message" hidden></section>
+
+    <section id="checkoutView" class="checkout-grid" hidden>
+      <div class="checkout-flow">
+        <div class="progress-strip" aria-label="Checkout progress">
+          <span class="progress-step active" data-step-label="address">1 Address</span>
+          <span class="progress-divider"></span>
+          <span class="progress-step" data-step-label="payment">2 Payment</span>
+          <span class="progress-divider"></span>
+          <span class="progress-step" data-step-label="review">3 Review</span>
+        </div>
+
+        <section class="checkout-section" id="addressSection">
+          <div class="section-heading">
+            <div>
+              <span class="section-number">1</span>
+              <h2>Delivery address</h2>
+            </div>
+            <button type="button" class="link-button" id="addAddressBtn">Add a new address</button>
+          </div>
+          <div id="addressList" class="address-list"></div>
+
+          <form id="addressForm" class="address-form" novalidate hidden>
+            <h3 id="addressFormTitle">Add a new address</h3>
+            <div class="form-grid">
+              <label>Full name
+                <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+              </label>
+              <label>Mobile number
+                <input id="mobile" name="mobile" type="tel" maxlength="10" inputmode="numeric" required>
+              </label>
+              <label>Pincode
+                <input id="pincode" name="pincode" type="text" maxlength="6" inputmode="numeric" required>
+              </label>
+              <label>House number
+                <input id="houseNumber" name="houseNumber" type="text" required>
+              </label>
+              <label class="wide">Area, street, sector, village
+                <input id="area" name="area" type="text" required>
+              </label>
+              <label>Town/City
+                <input id="city" name="city" type="text" required>
+              </label>
+              <label>State
+                <select id="state" name="state" required>
+                  <option value="">Choose a state</option>
+                  <option>Andhra Pradesh</option>
+                  <option>Delhi</option>
+                  <option>Gujarat</option>
+                  <option>Karnataka</option>
+                  <option>Maharashtra</option>
+                  <option>Tamil Nadu</option>
+                  <option>Telangana</option>
+                  <option>Uttar Pradesh</option>
+                  <option>West Bengal</option>
+                </select>
+              </label>
+            </div>
+            <p id="addressError" class="form-error" role="alert"></p>
+            <div class="form-actions">
+              <button type="submit" class="primary-action">Use this address</button>
+              <button type="button" class="secondary-action" id="cancelAddressBtn">Cancel</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="checkout-section" id="paymentSection">
+          <div class="section-heading">
+            <div>
+              <span class="section-number">2</span>
+              <h2>Payment method</h2>
+            </div>
+          </div>
+          <div class="payment-options" id="paymentOptions"></div>
+          <div id="paymentDetails" class="payment-details"></div>
+        </section>
+
+        <section class="checkout-section" id="reviewSection">
+          <div class="section-heading">
+            <div>
+              <span class="section-number">3</span>
+              <h2>Review items and delivery</h2>
+            </div>
+          </div>
+          <div id="deliverySummary" class="delivery-summary"></div>
+          <div id="reviewItems" class="review-items"></div>
+        </section>
+      </div>
+
+      <aside class="order-summary" aria-label="Order summary">
+        <button type="button" id="placeOrderBtn" class="place-order-btn">Place your order</button>
+        <p class="terms-copy">By placing your order, you agree to Amazon's conditions of use and privacy notice.</p>
+        <div class="summary-box">
+          <h2>Order Summary</h2>
+          <div class="summary-line"><span>Items</span><strong id="itemsTotal">₹0</strong></div>
+          <div class="summary-line"><span>Delivery</span><strong id="deliveryFee">₹0</strong></div>
+          <div class="summary-line"><span>Estimated tax</span><strong id="taxTotal">₹0</strong></div>
+          <div class="summary-line discount"><span>Promotion applied</span><strong id="promotionTotal">-₹0</strong></div>
+          <div class="summary-total"><span>Order Total</span><strong id="grandTotal">₹0</strong></div>
+        </div>
+        <div class="support-box">
+          <strong>Need help?</strong>
+          <span>Payment is simulated for this frontend-only module.</span>
+        </div>
+      </aside>
+    </section>
+
+    <section id="confirmationView" class="confirmation-view" hidden>
+      <div class="confirmation-panel">
+        <div class="success-mark">OK</div>
+        <div>
+          <h2>Order placed, thank you!</h2>
+          <p>A confirmation has been recorded against your current session.</p>
+        </div>
+      </div>
+      <div id="confirmationDetails" class="confirmation-grid"></div>
+      <a href="../Search_and_Cart/index.html" class="continue-shopping">Continue shopping</a>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
