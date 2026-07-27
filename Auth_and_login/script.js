@@ -91,8 +91,13 @@ function createSession(user) {
     
     document.getElementById('login-form').reset();
     document.getElementById('register-form').reset();
-    
-    showDashboard();
+    const redirect = sessionStorage.getItem("redirectAfterLogin");
+    if (redirect) {
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.href = redirect;
+    } else {
+        window.location.href = "../Search_and_Cart/index.html";
+    }
 }
 
 function checkSession() {

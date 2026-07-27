@@ -519,11 +519,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Render User Status from Module 1
 function renderUserModule1Status() {
-  const userSession = JSON.parse(localStorage.getItem('amazon_user_session'));
-  const userNavLine1 = document.getElementById('userNavLine1');
-  if (userSession && userNavLine1) {
-    userNavLine1.textContent = `Hello, ${userSession.name || 'User'}`;
-  }
+    const userSession = getActiveUserSession();
+
+    const userNavLine1 = document.getElementById("userNavLine1");
+    const menu = document.getElementById("accountMenu");
+    const trigger = document.getElementById("accountTrigger");
+    const dropdown = menu.querySelector(".account-dropdown");
+
+    if (userSession) {
+
+        // Logged in
+        userNavLine1.textContent = `Hello, ${userSession.user?.name || userSession.name}`;
+
+        dropdown.style.display = "";
+
+        trigger.onclick = null;
+
+    } else {
+
+        // Not logged in
+        userNavLine1.textContent = "Hello, Sign in";
+
+        dropdown.style.display = "none";
+
+        trigger.onclick = () => {
+            window.location.href = "../Auth_and_login/index.html";
+        };
+    }
+}
+
+function getActiveUserSession() {
+  const moduleSession = JSON.parse(localStorage.getItem('session') || 'null');
+  if (moduleSession && moduleSession.isLoggedIn) return moduleSession;
+  return JSON.parse(localStorage.getItem('amazon_user_session') || 'null');
 }
 
 // Set Active Category
@@ -782,7 +810,7 @@ function proceedToCheckoutModule3() {
     return;
   }
   saveCart();
-  alert(`🛒 Handing over to Module 3 (Checkout & Payment)!\n\nCart Items: ${cartState.length}\nTotal Amount: ₹${formatINR(cartState.reduce((sum, item) => sum + (item.price * item.quantity), 0))}\n\nCart data serialized to localStorage key 'amazon_in_cart'.`);
+  window.location.href = '../Checkout_Payment/index.html';
 }
 
 // Modal & Drawers
@@ -895,3 +923,27 @@ function setupEventListeners() {
     });
   }
 }
+function logout(){
+
+    localStorage.removeItem("session");
+
+    window.location.href="../Auth_and_login/index.html";
+
+}
+document.addEventListener("DOMContentLoaded",()=>{
+
+    const logoutLink=document.getElementById("logoutLink");
+
+    if(logoutLink){
+
+        logoutLink.addEventListener("click",(e)=>{
+
+            e.preventDefault();
+
+            logout();
+
+        });
+
+    }
+
+});

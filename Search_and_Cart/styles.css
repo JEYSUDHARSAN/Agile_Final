@@ -246,7 +246,75 @@ body {
   align-items: center;
   gap: 2px;
 }
+.nav-account{
+    position: relative;
+    cursor: pointer;
+}
 
+.account-dropdown{
+
+    display:none;
+
+    position:absolute;
+
+    top:100%;
+
+    right:0;
+
+    width:220px;
+
+    background:white;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+    padding:10px 0;
+
+    z-index:1000;
+}
+
+.account-dropdown a{
+
+    display:block;
+
+    padding:10px 18px;
+
+    color:#111;
+
+    text-decoration:none;
+
+    font-size:14px;
+}
+
+.account-dropdown a:hover{
+
+    background:#f3f3f3;
+}
+
+.nav-account:hover .account-dropdown{
+
+    display:block;
+}
+.account-dropdown.disabled {
+    display: none !important;
+}
+
+.account-dropdown hr{
+
+    margin:8px 0;
+
+    border:none;
+
+    border-top:1px solid #e5e5e5;
+}
+.account-trigger{
+
+    cursor:pointer;
+
+}
 /* Authentic Amazon Cart Button (Pixel-Perfect Alignment) */
 .cart-nav-btn {
   display: flex;
