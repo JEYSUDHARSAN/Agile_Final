@@ -26,9 +26,14 @@ function initCheckout() {
   cart = readJson(CART_KEY, []);
 
   if (!session) {
-    showGate('Please sign in before checkout.', '../Auth_and_login/index.html', 'Sign in');
+    sessionStorage.setItem(
+        "redirectAfterLogin",
+        "../Checkout_Payment/index.html"
+    );
+
+    window.location.href = "../Auth_and_login/index.html";
     return;
-  }
+  } 
 
   if (!cart.length) {
     showGate('Your cart is empty. Add items before starting checkout.', '../Search_and_Cart/index.html', 'Return to cart');
