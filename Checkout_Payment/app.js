@@ -238,7 +238,7 @@ function placeOrder() {
 
   const method = paymentMethods.find(item => item.id === selectedPaymentId);
   if (method.fields.length && !Array.from(document.querySelectorAll('[data-payment-field]')).every(input => input.value.trim())) {
-    alert('Enter the mock payment details to simulate payment.');
+    alert('Enter the necessary payment details to facilitate payment.');
     return;
   }
 

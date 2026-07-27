@@ -519,11 +519,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Render User Status from Module 1
 function renderUserModule1Status() {
-  const userSession = getActiveUserSession();
-  const userNavLine1 = document.getElementById('userNavLine1');
-  if (userSession && userNavLine1) {
-    userNavLine1.textContent = `Hello, ${userSession.name || userSession.user?.name || 'User'}`;
-  }
+    const userSession = getActiveUserSession();
+
+    const userNavLine1 = document.getElementById("userNavLine1");
+    const menu = document.getElementById("accountMenu");
+    const trigger = document.getElementById("accountTrigger");
+    const dropdown = menu.querySelector(".account-dropdown");
+
+    if (userSession) {
+
+        // Logged in
+        userNavLine1.textContent = `Hello, ${userSession.user?.name || userSession.name}`;
+
+        dropdown.style.display = "";
+
+        trigger.onclick = null;
+
+    } else {
+
+        // Not logged in
+        userNavLine1.textContent = "Hello, Sign in";
+
+        dropdown.style.display = "none";
+
+        trigger.onclick = () => {
+            window.location.href = "../Auth_and_login/index.html";
+        };
+    }
 }
 
 function getActiveUserSession() {
@@ -901,3 +923,27 @@ function setupEventListeners() {
     });
   }
 }
+function logout(){
+
+    localStorage.removeItem("session");
+
+    window.location.href="../Auth_and_login/index.html";
+
+}
+document.addEventListener("DOMContentLoaded",()=>{
+
+    const logoutLink=document.getElementById("logoutLink");
+
+    if(logoutLink){
+
+        logoutLink.addEventListener("click",(e)=>{
+
+            e.preventDefault();
+
+            logout();
+
+        });
+
+    }
+
+});
