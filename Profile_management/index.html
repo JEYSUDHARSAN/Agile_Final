@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="margin: 0; padding: 0; background-color: #eaeded; font-family: 'Amazon Ember', Arial, sans-serif;">
+
+  <!-- Global Amazon Header -->
+  <header id="global-amazon-header" class="amazon-header">
+    <div class="header-main">
+      
+      <!-- Authentic Amazon Logo with Crisp Orange Smile Arrow -->
+      <a href="#" class="brand-logo" onclick="navigateTo('Search_and_Cart'); setActiveCategory('All'); return false;">
+        <div class="logo-text-box">
+          <span class="logo-amazon-text">amazon</span><span class="logo-in-text">.in</span>
+        </div>
+        <svg class="smile-arrow-svg" viewBox="0 0 100 20">
+          <path d="M 4 3 Q 48 18 84 3" fill="none" stroke="#FF9900" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M 76 1 L 87 3 L 79 10 Z" fill="#FF9900"/>
+        </svg>
+        <span class="logo-prime-text">prime</span>
+      </a>
+
+      <!-- Deliver to Location Vector Pin -->
+      <div class="nav-location">
+        <svg class="location-pin-svg" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <div class="location-text">
+          <span class="location-line1">Deliver to</span>
+          <span class="location-line2">India 400001</span>
+        </div>
+      </div>
+
+      <!-- Main Search Bar -->
+      <div class="header-search">
+        <select id="searchCategorySelect" class="search-category-select" aria-label="Select Category">
+          <option value="All">All</option>
+          <option value="Electronics">Mobiles & Electronics</option>
+          <option value="Fashion">Fashion & Apparel</option>
+          <option value="Home & Kitchen">Home & Kitchen</option>
+          <option value="Books">Books</option>
+          <option value="Gaming">Gaming</option>
+        </select>
+        <div class="search-input-wrapper">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search Amazon.in" aria-label="Search Amazon.in">
+        </div>
+        <button id="searchSubmitBtn" class="search-submit-btn" aria-label="Search Submit">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Actions Right -->
+      <div class="header-actions">
+        <!-- Language Selector -->
+        <div class="nav-item" style="flex-direction: row; align-items: center; justify-content: center; font-weight: 700; gap: 4px; padding: 10px 8px;">
+          <span class="flag-icon">🇮🇳</span> EN ▾
+        </div>
+
+        <!-- User Session (Module 1 Integration) -->
+      <div class="nav-account" id="accountMenu">
+
+        <div class="account-trigger" id="accountTrigger" onclick="navigateTo('Your_Account')" style="display:flex; flex-direction:column; align-items:flex-start; padding: 6px 8px;">
+          <span id="userNavLine1" class="nav-line1">Hello, Sign in</span>
+          <span class="nav-line2" style="font-weight:700; color:white;">Account &amp; Lists ▼</span>
+        </div>
+
+        <div class="account-dropdown"><a href="#" onclick="navigateTo('Your_Account'); return false;">My Account</a><a href="#" onclick="navigateTo('Your_Orders'); return false;">Orders</a><a href="#" onclick="navigateTo('Your_Addresses'); return false;">Addresses</a><hr>
+            <a href="#" id="logoutLink">Sign Out</a></div>
+      </div>
+
+        <!-- Orders -->
+        <div class="nav-item" onclick="navigateTo('Your_Orders')" style="display:flex; flex-direction:column; align-items:flex-start; padding: 6px 8px; cursor: pointer;">
+          <span class="nav-line1">Returns</span>
+          <span class="nav-line2" style="font-weight:700; color:white;">&amp; Orders</span>
+        </div>
+
+        <!-- Authentic Amazon Cart Button -->
+        <div class="nav-item cart-nav-btn" onclick="openCartDrawer()">
+          <div class="cart-icon-wrapper">
+            <svg class="amazon-cart-svg" viewBox="0 0 38 28">
+              <path d="M7 1h-6v2h4l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h22v-2h-21.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h14.55c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1h-24.69l-.94-2zm3 17c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm16 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+            <span id="navCartCount" class="cart-count">0</span>
+          </div>
+          <span class="cart-text-label">Cart</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Subnav Strip -->
+    <nav class="header-subnav" id="subnavContainer">
+      <a href="#" class="subnav-link bold active" data-category="All">☰ All</a>
+      <a href="#" class="subnav-link" data-category="Electronics">Mobiles & Electronics</a>
+      <a href="#" class="subnav-link" data-category="Fashion">Fashion & Apparel</a>
+      <a href="#" class="subnav-link" data-category="Home & Kitchen">Home & Kitchen</a>
+      <a href="#" class="subnav-link" data-category="Books">Books</a>
+      <a href="#" class="subnav-link" data-category="Gaming">Gaming Consoles</a>
+      <a href="#" class="subnav-link" data-category="Deals" style="color: var(--amazon-yellow); font-weight:700;">Today's Deals</a>
+      <a href="#" class="subnav-link" data-category="Prime">Prime</a>
+      <a href="#" class="subnav-link" data-category="Amazon Pay">Amazon Pay</a>
+      <a href="#" class="subnav-link" data-category="Customer Service">Customer Service</a>
+    </nav>
+  </header>
+
+    <!-- MODULE: Your_Account -->
+    <div id="module-Your_Account" class="module-container" style="display: block;">
+        <main class="account-page-main">
+            <div class="account-page-container">
+                <h1>Your Account</h1>
+                <div class="account-grid">
+                    <div class="account-card" onclick="navigateTo('Your_Orders')">
+                        <div class="account-icon orders-icon">📦</div>
+                        <div class="account-card-text">
+                            <h2>Your Orders</h2>
+                            <p>Track, return, or buy things again</p>
+                        </div>
+                    </div>
+                    <div class="account-card" onclick="navigateTo('Search_and_Cart')">
+                        <div class="account-icon security-icon">🔒</div>
+                        <div class="account-card-text">
+                            <h2>Login & security</h2>
+                            <p>Edit login, name, and mobile number</p>
+                        </div>
+                    </div>
+                    <div class="account-card" onclick="navigateTo('Prime_Membership')">
+                        <div class="account-icon prime-icon">📦</div>
+                        <div class="account-card-text">
+                            <h2>Prime</h2>
+                            <p>View benefits and payment settings</p>
+                        </div>
+                    </div>
+                    <div class="account-card" onclick="navigateTo('Your_Addresses')">
+                        <div class="account-icon address-icon">📍</div>
+                        <div class="account-card-text">
+                            <h2>Your Addresses</h2>
+                            <p>Edit addresses for orders and gifts</p>
+                        </div>
+                    </div>
+                    <div class="account-card" onclick="navigateTo('Business_Account')">
+                        <div class="account-icon business-icon">Business</div>
+                        <div class="account-card-text">
+                            <h2>Your business account</h2>
+                            <p>Sign up for free to save up to 18% with GST invoice and bulk discounts and purchase on credit.</p>
+                        </div>
+                    </div>
+                    <div class="account-card" onclick="navigateTo('Payment_Options')">
+                        <div class="account-icon payment-icon">💳</div>
+                        <div class="account-card-text">
+                            <h2>Payment options</h2>
+                            <p>Edit or add payment methods</p>
+                        </div>
+                    </div>
+                    <div class="account-card" onclick="navigateTo('Amazon_Pay')">
+                        <div class="account-icon wallet-icon">💼</div>
+                        <div class="account-card-text">
+                            <h2>Amazon Pay balance</h2>
+                            <p>Add money to your balance</p>
+                        </div>
+                    </div>
+                    <div class="account-card" onclick="navigateTo('Contact_Us')">
+                        <div class="account-icon contact-icon">🎧</div>
+                        <div class="account-card-text">
+                            <h2>Contact Us</h2>
+                            <p>Contact our customer service via phone or chat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    
+    <!-- ========================================== -->
+    <!-- MODULE: Your_Orders -->
+    <!-- ========================================== -->
+    <div id="module-Your_Orders" class="module-container" style="display: none;">
+        <main class="account-page-main" style="max-width: 800px; margin: 20px auto;">
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('Your_Account'); return false;">Your Account</a> > <span>Your Orders</span>
+            </div>
+            <h1 style="font-size: 28px; font-weight: normal; margin-bottom: 20px;">Your Orders</h1>
+            <div id="yourOrdersList">
+                <!-- Orders will be rendered here by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODULE: Prime_Membership -->
+    <!-- ========================================== -->
+    <div id="module-Prime_Membership" class="module-container" style="display: none;">
+          <main class="account-page-main" style="max-width: 1000px; margin: 20px auto;">
+              
+              <!-- Top Banner -->
+              <div class="prime-top-banner">
+                  <div class="prime-banner-col prime-user-info">
+                      <div class="prime-avatar">
+                          <svg viewBox="0 0 24 24" width="60" height="60"><path fill="#a6b1b5" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                      </div>
+                      <div>
+                          <div class="prime-badge-header">
+                              <span style="color:#ff9900; font-weight:bold; font-size:16px;">&#10004;</span><span style="color:#00a8e1; font-weight:bold; font-size:16px;">prime</span>
+                          </div>
+                          <h2 id="primeUserName" style="font-size: 22px; font-weight: 400; color: #111; margin: 5px 0 0 0;">Loading...</h2>
+                      </div>
+                  </div>
+                  
+                  <div class="prime-banner-col">
+                      <div class="prime-label">Prime Plan</div>
+                      <div class="prime-value">Annual ₹999.00</div>
+                  </div>
+                  
+                  <div class="prime-banner-col">
+                      <div class="prime-label">Membership ending</div>
+                      <div class="prime-value">22 June 2027</div>
+                      <a href="#" class="prime-link">View your payment method &#9662;</a>
+                  </div>
+                  
+                  <div class="prime-banner-col" style="border-right: none;">
+                      <div class="prime-label">Manage</div>
+                      <div class="prime-value">Membership</div>
+                      <a href="#" class="prime-link">Update, continue and more &#9662;</a>
+                  </div>
+              </div>
+
+              <!-- Your Benefits Section -->
+              <div class="prime-benefits-section">
+                  <h3 class="prime-benefits-header">Your Benefits</h3>
+                  
+                  <div class="prime-benefit-row">
+                      <div class="prime-benefit-img-box">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Amazon_box.svg" alt="Free fast delivery">
+                      </div>
+                      <div class="prime-benefit-content">
+                          <h4>FREE fast delivery</h4>
+                          <p>Get Free One-Day Shipping on <a href="#">millions of items</a> and Free Two-Day Shipping on <a href="#">millions more</a></p>
+                      </div>
+                  </div>
+                  
+                  <div class="prime-benefit-row">
+                      <div class="prime-benefit-img-box">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg" alt="Prime Video" style="width: 80px;">
+                      </div>
+                      <div class="prime-benefit-content">
+                          <h4>Prime Video</h4>
+                          <p>Unlimited streaming of exclusive Indian and US blockbuster movies, TV shows and Amazon Originals on <a href="#">PrimeVideo.com</a></p>
+                      </div>
+                  </div>
+                  
+                  <div class="prime-benefit-row">
+                      <div class="prime-benefit-img-box">
+                          <svg viewBox="0 0 100 100" width="60" height="60"><circle cx="50" cy="50" r="40" fill="#fff"/><path d="M40 35 L65 50 L40 65 Z" fill="#00a8e1"/></svg>
+                      </div>
+                      <div class="prime-benefit-content">
+                          <h4>Prime Music</h4>
+                          <p>Pick & play from over 100 million songs, 15 million+ podcast episodes, with unlimited skips.<br><a href="#" style="font-weight:bold;">Listen Now</a></p>
+                      </div>
+                  </div>
+              </div>
+          </main>
+      </div>
+
+    <!-- ========================================== -->
+    <!-- MODULE: Contact_Us -->
+    <!-- ========================================== -->
+    <div id="module-Contact_Us" class="module-container" style="display: none;">
+        <main class="account-page-main" style="max-width: 600px; margin: 20px auto;">
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('Your_Account'); return false;">Your Account</a> > <span>Contact Us</span>
+            </div>
+            
+            <h1 style="font-size: 28px; font-weight: 700; margin: 15px 0 20px;">Contact Us</h1>
+            
+            <div id="contactSuccessMsg" style="display: none; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+                <strong>Success!</strong> Your message has been sent. We will get back to you shortly.
+            </div>
+
+            <form id="contactUsForm" class="amazon-full-form" onsubmit="submitContactForm(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="contactName" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="contactEmail" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="contactMessage" required class="form-input" style="height: 120px; resize: vertical; padding: 10px; border-radius: 8px; border: 1px solid #d5d9d9;"></textarea>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button type="submit" class="primary-action" style="background-color: #ffd814; border: 1px solid #FCD200; border-radius: 8px; width: 100%; padding: 12px; font-size: 15px; cursor: pointer;">Submit</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODULE: Payment_Options -->
+    <!-- ========================================== -->
+    <div id="module-Payment_Options" class="module-container" style="display: none; background-color: #fff; padding-bottom: 40px;">
+        <main class="account-page-main" style="max-width: 1000px; margin: 20px auto; padding: 0 20px;">
+            <div class="breadcrumbs" style="margin-bottom: 20px;">
+                <a href="#" onclick="navigateTo('Your_Account'); return false;" style="color: #007185; text-decoration: none; font-size: 14px;">Your Account</a>
+                <span style="color: #565959; font-size: 14px; margin: 0 5px;">›</span>
+                <span style="color: #c45500; font-size: 14px;">Manage Payment Methods</span>
+            </div>
+            
+            <h1 style="font-size: 28px; font-weight: normal; margin: 0 0 5px 0;">Your Payment Options</h1>
+            <p style="font-size: 14px; color: #565959; margin: 0 0 20px 0;">An overview of your payment methods, settings and subscriptions with Amazon.</p>
+            
+            <div style="border: 1px solid #007185; border-radius: 4px; border-left: 10px solid #007185; padding: 14px 18px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 12px; background-color: #fff;">
+                <div style="background-color: #007185; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: serif; font-size: 14px; flex-shrink: 0; margin-top: 1px;">i</div>
+                <div style="font-size: 14px; color: #111;">
+                    As per new RBI guidelines, some of your saved cards may be removed. Please re-enter card details and save it. <a href="#" style="color: #007185; text-decoration: none;">Learn more<span style="font-size: 10px; margin-left: 2px;">▼</span></a>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; max-width: 500px;">
+                <a href="#" style="display: block; border: 1px solid #d5d9d9; border-radius: 4px; padding: 16px 18px; text-decoration: none; color: #007185; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    Manage Kindle Payment Setting
+                </a>
+                <a href="#" style="display: block; border: 1px solid #d5d9d9; border-radius: 4px; padding: 16px 18px; text-decoration: none; color: #007185; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    Edit payment method for a current order
+                </a>
+                <a href="#" style="display: block; border: 1px solid #d5d9d9; border-radius: 4px; padding: 16px 18px; text-decoration: none; color: #007185; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    Manage Merchant Payment Options
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODULE: Business_Account -->
+    <!-- ========================================== -->
+    <div id="module-Business_Account" class="module-container" style="display: none; background-color: #f7f7f7; min-height: 100vh;">
+        <!-- Header -->
+        <header style="background-color: #fff; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd;">
+            <div style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;">
+                amazon <span style="color: #ff9900; font-weight: normal;">business</span>
+            </div>
+            <a href="#" onclick="navigateTo('Your_Account'); return false;" style="color: #111; text-decoration: none; font-size: 14px; letter-spacing: 1px;">CANCEL</a>
+        </header>
+
+        <!-- Main Content -->
+        <main style="max-width: 900px; margin: 40px auto; background: #fff; border: 1px solid #ddd; display: flex; border-radius: 2px; overflow: hidden;">
+            <!-- Left Side -->
+            <div style="flex: 1; padding: 40px;">
+                <h1 style="font-size: 28px; font-weight: 700; color: #111; margin-top: 0; margin-bottom: 15px;">Let's create your free Amazon Business Account</h1>
+                <p style="font-size: 16px; color: #111; margin-bottom: 25px; line-height: 1.4;"><strong>Save up to 18%</strong> with business pricing and GST input tax credit</p>
+                
+                <form onsubmit="event.preventDefault(); alert('Submission successful!'); navigateTo('Your_Account');">
+                    <label style="display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #111;">GST Number</label>
+                    <input type="text" required style="width: 100%; padding: 10px; border: 1px solid #888; border-radius: 2px; margin-bottom: 20px; font-size: 14px; box-sizing: border-box;">
+                    
+                    <button type="submit" style="width: 100%; background-color: #f3a847; border: 1px solid #a88734; border-radius: 3px; padding: 12px; font-size: 14px; color: #111; cursor: pointer; box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset;">Submit</button>
+                </form>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="#" style="color: #007185; text-decoration: none; font-size: 15px;">Register with Udyam / BPAN / FSSAI <span style="font-size: 12px;">▼</span></a>
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div style="flex: 1; padding: 40px; background-color: #f6f6f6; border-left: 1px solid #ddd;">
+                <h2 style="font-size: 22px; font-weight: normal; color: #111; margin-top: 0; margin-bottom: 30px;">Reshape buying for your organisation</h2>
+                
+                <div style="display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start;">
+                    <div style="font-size: 32px; color: #565959;">🏷️</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 16px; color: #111; margin-bottom: 4px;">Business Savings</div>
+                        <div style="font-size: 15px; color: #565959;">Save big with exclusive business prices and discounts</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start;">
+                    <div style="font-size: 32px; color: #565959;">🛒</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 16px; color: #111; margin-bottom: 4px;">Buy Now, Pay Later</div>
+                        <div style="font-size: 15px; color: #565959;">Enjoy upto ₹60,000 instant credit*</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-bottom: 30px; align-items: flex-start;">
+                    <div style="font-size: 32px; color: #565959;">🧾</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 16px; color: #111; margin-bottom: 4px;">GST Invoice</div>
+                        <div style="font-size: 15px; color: #565959;">Save upto 18% with GST Input Tax Credit</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" style="color: #111; text-decoration: underline; font-size: 13px;">Learn more about Amazon Business</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODULE: Amazon_Pay -->
+    <!-- ========================================== -->
+    <div id="module-Amazon_Pay" class="module-container" style="display: none; background-color: #f2f4f8; min-height: 100vh;">
+        <!-- Header -->
+        <header style="background-color: #fff; padding: 15px 40px; border-bottom: 1px solid #ddd;">
+            <div style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif; display: flex; align-items: center;">
+                amazon <span style="font-weight: normal; margin-left: 5px; color: #565959;">pay</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main style="max-width: 1000px; margin: 30px auto; padding: 0 20px;">
+            <h1 style="font-size: 28px; font-weight: 700; color: #111; margin-bottom: 25px;">Amazon Pay balance</h1>
+            
+            <div style="display: flex; gap: 20px; align-items: flex-start;">
+                <!-- Left Column -->
+                <div style="flex: 2; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Total Balance Card -->
+                    <div style="background: #fff; border-radius: 8px; padding: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px;">
+                            <h2 style="font-size: 22px; margin: 0; color: #111;">Total balance</h2>
+                            <span style="font-size: 24px; font-weight: 700; color: #008296;">₹26.00</span>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; color: #888;">
+                            <span style="font-size: 15px;">Wallet</span>
+                            <span style="font-size: 15px;">₹0.00</span>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; color: #888;">
+                            <div>
+                                <div style="font-size: 15px;">Gift Cards</div>
+                                <div style="font-size: 13px;">Includes Cashback & Refunds</div>
+                            </div>
+                            <span style="font-size: 15px;">₹26.00</span>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0; color: #888;">
+                            <span style="font-size: 15px;">Vouchers</span>
+                            <span style="font-size: 15px;">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Add Money Card -->
+                    <div style="background: #fff; border-radius: 8px; padding: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 18px; color: #111; margin-top: 0; margin-bottom: 20px;">Add money to Wallet</h3>
+                        
+                        <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px 15px; margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; color: #565959; margin-bottom: 5px;">Enter Amount</label>
+                            <div style="display: flex; align-items: center; font-size: 24px; color: #111;">
+                                <span style="margin-right: 5px; color: #565959;">₹</span>
+                                <input type="text" value="1000" style="border: none; font-size: 24px; color: #111; outline: none; width: 100%;">
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <button style="background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 6px 15px; font-size: 14px; font-weight: bold; cursor: pointer; color: #111;">+ ₹500</button>
+                            <button style="background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 6px 15px; font-size: 14px; font-weight: bold; cursor: pointer; color: #111;">+ ₹1000</button>
+                            <button style="background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 6px 15px; font-size: 14px; font-weight: bold; cursor: pointer; color: #111;">+ ₹1500</button>
+                        </div>
+                        
+                        <div style="font-size: 13px; color: #565959; margin-bottom: 20px; display: flex; align-items: center; gap: 5px;">
+                            <span style="background: #565959; color: white; width: 14px; height: 14px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px;">i</span>
+                            You can add up-to ₹10000.00
+                        </div>
+                        
+                        <button style="background: #f7e3b5; border: none; border-radius: 25px; padding: 15px 30px; font-size: 16px; font-weight: bold; color: #555; cursor: pointer; margin-bottom: 10px;">Set-up wallet to add money</button>
+                        
+                        <p style="font-size: 12px; color: #888; margin: 0;">To set up your wallet, try logging in from the Amazon...</p>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Card 1 -->
+                    <div style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 16px; color: #111; margin-top: 0; margin-bottom: 15px;">Do more with Amazon Pay Balance</h3>
+                        
+                        <a href="#" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; text-decoration: none; color: #111;">
+                            <span>Add Gift Card to Balance</span>
+                            <span style="color: #565959; font-size: 20px;">›</span>
+                        </a>
+                        
+                        <a href="#" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0 5px 0; text-decoration: none; color: #111;">
+                            <span>Add Cash to balance</span>
+                            <span style="color: #565959; font-size: 20px;">›</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                        <a href="#" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: #111; font-weight: bold;">
+                            <span style="font-size: 16px;">Transaction history</span>
+                            <span style="color: #565959; font-size: 20px; font-weight: normal;">›</span>
+                        </a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 16px; color: #111; margin-top: 0; margin-bottom: 15px;">Manage</h3>
+                        <a href="#" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: #111;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 40px; height: 40px; background: #f2f4f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                                    <span style="font-size: 20px; color: #565959;">👤</span>
+                                    <span style="position: absolute; bottom: 0; right: 0; background: #ff9900; color: white; width: 14px; height: 14px; border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center;">⚙</span>
+                                </div>
+                                <span>Account Settings</span>
+                            </div>
+                            <span style="color: #565959; font-size: 20px;">›</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <a href="#" onclick="navigateTo('Your_Account'); return false;" style="color: #007185; text-decoration: none; font-size: 15px;">&larr; Back to Your Account</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODULE: Your_Addresses -->
+    <!-- ========================================== -->
+    <div id="module-Your_Addresses" class="module-container" style="display: none;">
+        
+        
+        <main class="account-page-main">
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('Your_Account'); return false;">Your Account</a> > <span>Your Addresses</span>
+            </div>
+            <div class="account-page-container">
+                <h1>Your Addresses</h1>
+                
+                <div class="address-page-grid" id="yourAddressesGrid">
+                    <!-- The Add Address box and saved addresses will be rendered here by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODULE: Address_Form -->
+    <!-- ========================================== -->
+    <div id="module-Address_Form" class="module-container" style="display: none;">
+        
+
+        <main class="account-page-main" style="max-width: 600px; margin: 20px auto;">
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('Your_Account'); return false;">Your Account</a> &rsaquo; 
+                <a href="#" onclick="navigateTo('Your_Addresses'); return false;">Your Addresses</a> &rsaquo; 
+                <span id="addressFormBreadcrumb" style="color: #c45500;">New Address</span>
+            </div>
+            
+            <h1 id="addressFormTitle" style="font-size: 28px; font-weight: 700; margin: 15px 0 10px;">Add a new address</h1>
+            
+            <div style="font-size: 14px; margin-bottom: 20px;">
+                <a href="#" style="color: #007185; text-decoration: none; display: flex; align-items: center;">
+                    <div style="background-color: #f99900; color: white; border-radius: 50%; width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; margin-right: 8px;">a</div>
+                    Or find an Amazon collection location near you
+                </a>
+            </div>
+
+            <div class="autofill-banner">
+                <span style="font-weight: bold;">Save time. Autofill your current location.</span>
+                <button type="button" class="autofill-btn">Autofill</button>
+            </div>
+
+            <form id="addressForm" class="amazon-full-form" novalidate onsubmit="saveAddress(event)">
+                <div class="form-group">
+                    <label>Country/Region</label>
+                    <select class="form-select">
+                        <option>India</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Full name (First and Last name)</label>
+                    <input id="fullName" name="fullName" type="text" autocomplete="name" required class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile number</label>
+                    <input id="mobile" name="mobile" type="tel" maxlength="10" inputmode="numeric" required class="form-input">
+                    <div class="form-helper">May be used to assist delivery</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Pincode</label>
+                    <input id="pincode" name="pincode" type="text" maxlength="6" inputmode="numeric" placeholder="6 digits [0-9] PIN code" required class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label>Flat, House no., Building, Company, Apartment</label>
+                    <input id="houseNumber" name="houseNumber" type="text" required class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label>Area, Street, Sector, Village</label>
+                    <input id="area" name="area" type="text" required class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label>Landmark</label>
+                    <input id="landmark" name="landmark" type="text" placeholder="E.g. near apollo hospital" class="form-input">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label>Town/City</label>
+                        <input id="city" name="city" type="text" required class="form-input">
+                    </div>
+                    <div class="form-group half-width">
+                        <label>State</label>
+                        <select id="state" name="state" required class="form-select">
+                            <option value="">Choose a state</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Delhi">Delhi</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <p id="addressError" class="form-error" role="alert" style="color: #c40000; font-size: 13px;"></p>
+
+                <div style="margin-top: 30px; margin-bottom: 50px;">
+                    <button type="submit" class="primary-action" style="background-color: #ffd814; border: 1px solid #FCD200; border-radius: 8px; width: 100%; padding: 12px; font-size: 15px; cursor: pointer;">Add address</button>
+                    <button type="button" class="secondary-action" id="cancelAddressBtn" onclick="closeAddressForm()" style="margin-top: 15px; width: 100%; padding: 12px; background: #fff; border: 1px solid #d5d9d9; border-radius: 8px; box-shadow: 0 2px 5px rgba(213,217,217,.5); cursor: pointer; font-size: 15px;">Cancel</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
