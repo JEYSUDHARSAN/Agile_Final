@@ -128,3 +128,7 @@ Shares the common Amazon header for navigation.
 ## Summary
 
 The **Your Account Module** provides a simple Amazon-like account management system where users can view orders, manage addresses, access Amazon Pay, Prime, Business, and other account pages. It is designed to integrate easily with the Login, Checkout, and Search & Cart modules while keeping all data stored locally in the browser.
+
+
+
+changes made in this line
