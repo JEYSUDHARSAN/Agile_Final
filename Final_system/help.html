@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Customer Service</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { padding: 40px; align-items: flex-start; max-width: 800px; margin: 0 auto; }
+        h1 { margin-bottom: 20px; font-weight: 400; }
+        p { margin-bottom: 15px; line-height: 1.6; }
+        .help-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .help-card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; }
+        .help-card h3 { margin-bottom: 10px; font-weight: 400; }
+        .help-card a { color: #0066c0; text-decoration: none; font-size: 14px; margin-top: auto; }
+        .help-card a:hover { text-decoration: underline; color: #c45500; }
+        .back-link { margin-bottom: 20px; font-size: 14px; }
+        .back-link a { color: #0066c0; text-decoration: none; }
+        .back-link a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="logo-container" style="align-self: flex-start;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo">
+    </div>
+    <div class="back-link"><a href="index.html">&larr; Back to Sign-In</a></div>
+    
+    <h1>Hello. What can we help you with?</h1>
+    
+    <div class="help-grid">
+        <div class="help-card">
+            <h3>Your Orders</h3>
+            <p>Track packages, edit or cancel orders</p>
+            <a href="#">Learn more &rarr;</a>
+        </div>
+        <div class="help-card">
+            <h3>Returns & Refunds</h3>
+            <p>Return or exchange items, print return labels</p>
+            <a href="#">Learn more &rarr;</a>
+        </div>
+        <div class="help-card">
+            <h3>Account Settings</h3>
+            <p>Change your email or password, update login information</p>
+            <a href="#">Learn more &rarr;</a>
+        </div>
+        <div class="help-card">
+            <h3>Payment Settings</h3>
+            <p>Add or edit payment methods, change billing address</p>
+            <a href="#">Learn more &rarr;</a>
+        </div>
+    </div>
+    
+    <h2 style="margin-top: 40px; margin-bottom: 20px; font-weight: 400;">Find more solutions</h2>
+    <div class="form-group" style="width: 100%; max-width: 400px;">
+        <input type="text" placeholder="Search our help library..." style="padding: 10px; height: 40px; font-size: 16px;">
+    </div>
+    
+    <div class="footer" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px; width: 100%;">
+        <div class="footer-copy">
+            © 1996-2024, Amazon.com, Inc. or its affiliates
+        </div>
+    </div>
+</body>
+</html>
