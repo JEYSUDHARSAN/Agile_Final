@@ -66,3 +66,8 @@ Cart -> Checkout -> Shipping Address -> Payment -> Order Review -> Place Order -
 - Add richer payment validation and masked saved payment instruments.
 - Sync session shape across all modules.
 ## Create New
+- These lines are intentionally added to show changes
+```bash
+Powershell -SetExecutionPolicy -RemoteSigned
+```
+_The actual Powershell code is way longer than that but again it is only a demo_
