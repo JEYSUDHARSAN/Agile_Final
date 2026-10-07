@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project Information -->
+    <groupId>com.agile</groupId>
+    <artifactId>agile-web-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- Web Application -->
+    <packaging>war</packaging>
+
+    <name>Agile Web Project</name>
+    <description>Agile Web Project using HTML, CSS and JavaScript</description>
+
+    <build>
+
+        <plugins>
+
+            <!-- WAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+
+                <configuration>
+
+                    <!-- No web.xml is required for this project -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+
+                    <!-- Existing project folders -->
+                    <webResources>
+
+                        <resource>
+                            <directory>${project.basedir}/Auth_and_login</directory>
+                            <targetPath>Auth_and_login</targetPath>
+                        </resource>
+
+                        <resource>
+                            <directory>${project.basedir}/Checkout_Payment</directory>
+                            <targetPath>Checkout_Payment</targetPath>
+                        </resource>
+
+                        <resource>
+                            <directory>${project.basedir}/Final_system</directory>
+                            <targetPath>Final_system</targetPath>
+                        </resource>
+
+                        <resource>
+                            <directory>${project.basedir}/Profile_management</directory>
+                            <targetPath>Profile_management</targetPath>
+                        </resource>
+
+                        <resource>
+                            <directory>${project.basedir}/Search_and_Cart</directory>
+                            <targetPath>Search_and_Cart</targetPath>
+                        </resource>
+
+                    </webResources>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>

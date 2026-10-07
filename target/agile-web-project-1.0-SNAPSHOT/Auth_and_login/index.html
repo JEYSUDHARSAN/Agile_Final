@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Sign-In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="auth-view" class="view-container active">
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo">
+        </div>
+        
+        <div class="auth-container">
+            <!-- Global Error Box -->
+            <div id="auth-error-box" class="error-box">
+                <div class="error-box-icon">!</div>
+                <div class="error-box-content">
+                    <h4>There was a problem</h4>
+                    <p id="auth-error-msg"></p>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-container" class="active" style="display: block;">
+                <div class="auth-card">
+                    <h1>Sign-In</h1>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email or mobile phone number</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                        
+                        <div class="legal-text">
+                            By continuing, you agree to Amazon's <a href="conditions.html">Conditions of Use</a> and <a href="privacy.html">Privacy Notice</a>.
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="divider">
+                    <span>New to Amazon?</span>
+                </div>
+                
+                <button type="button" class="btn btn-secondary" onclick="toggleAuthMode('register')">Create your Amazon account</button>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="register-container" style="display: none;">
+                <div class="auth-card">
+                    <h1>Create account</h1>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="reg-name">Your name</label>
+                            <input type="text" id="reg-name" required placeholder="First and last name">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Mobile number or email</label>
+                            <input type="email" id="reg-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Password</label>
+                            <input type="password" id="reg-password" required placeholder="At least 6 characters">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Continue</button>
+                        
+                        <div class="legal-text">
+                            By creating an account, you agree to Amazon's <a href="conditions.html">Conditions of Use</a> and <a href="privacy.html">Privacy Notice</a>.
+                        </div>
+                        
+                        <div style="margin-top: 20px; font-size: 13px;">
+                            Already have an account? <a href="#" onclick="toggleAuthMode('login'); return false;" style="color: #0066c0; text-decoration: none;">Sign in <span>&#9656;</span></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="dashboard-view" class="view-container">
+        <header class="dashboard-header">
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo">
+            </div>
+            <button onclick="logout()" class="btn btn-secondary" style="width: auto; padding: 0 15px;">Sign Out</button>
+        </header>
+        <main class="dashboard-content">
+            <h1 id="welcome-msg">Welcome, User!</h1>
+            <p>This is the placeholder Home page for Module 1.</p>
+            <div style="padding: 20px; border: 1px solid #ddd; border-radius: 4px; background: #fafafa; margin-top: 20px;">
+                <h3 style="margin-bottom: 10px; font-weight: 400; color: #111;">Integration Info</h3>
+                <p style="margin-bottom: 5px;">The session state is currently saved in <code>localStorage</code> under the key <strong>"session"</strong>.</p>
+                <p>Modules 2 (Search & Cart) and 3 (Checkout & Payment) can read this session data.</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="footer">
+        <div class="footer-links">
+            <a href="conditions.html">Conditions of Use</a>
+            <a href="privacy.html">Privacy Notice</a>
+            <a href="help.html">Help</a>
+        </div>
+        <div class="footer-copy">
+            © 1996-2024, Amazon.com, Inc. or its affiliates
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
